@@ -155,6 +155,7 @@ var = [x * x for x in range(1, 11) if x % 2 == 0]
 [m + n for m in 'ABC' for n in 'ZYX']
 
 import os
+
 d = [d for d in os.listdir('..')]
 print(d)
 
@@ -181,6 +182,7 @@ def odd():
     print('step 3')
     yield 3
 
+
 g = fib(6)
 while True:
     try:
@@ -190,12 +192,14 @@ while True:
         print('Generator return Value', e.value)
         break
 
+
 # 杨辉三角
 def triangles(line):
     L = [1]
     while True:
         yield L
-        L = [1] + [L[i] + L[i+1] for i in range(len(L) - 1)] + [1]
+        L = [1] + [L[i] + L[i + 1] for i in range(len(L) - 1)] + [1]
+
 
 n = 0
 for t in triangles(10):
@@ -204,16 +208,47 @@ for t in triangles(10):
     if n == 10:
         break
 
-
 # 迭代器
 isinstance((x for x in range(10)), Iterable)
 
-#高阶函数
+
+# 高阶函数
 def add(x, y, f):
     return f(x) + f(y)
 
-#map
+
+# map
 def f(x):
     return x * x
-r = map(f, [1,2,3,4])
+
+
+r = map(f, [1, 2, 3, 4])
 print(list(r))
+list(map(str, [1, 2, 3]))
+
+from functools import reduce
+
+
+def add(x, y):
+    return x + y
+
+
+reduce(add, [1, 3, 5, 7, 9])
+
+
+def str2Int(s):
+    def fn(x, y):
+        return x * 10 + y
+
+    def char2Num(s):
+        return {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}[s]
+
+    return reduce(fn, map(char2Num, s))
+
+
+# 使用 y 表达式
+def char2Num(s):
+    return {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}[s]
+def str2Int(s):
+    return reduce(lambda x, y: x * 10 + y, map(char2Num, s))
+
