@@ -275,6 +275,8 @@ class Fib(object):
         if self.a > 1000:
             raise StopIteration()
         return self.a
+
+
 for n in Fib():
     print(n)
 
@@ -286,8 +288,11 @@ class Fib(object):
         for x in range(item):
             a, b = b, a + b
         return a
+
+
 f = Fib()[12]
 print(f)
+
 
 class Fib(object):
     def __getitem__(self, item):
@@ -296,5 +301,77 @@ class Fib(object):
             for x in range(item):
                 a, b = b, a + b
             return a
-        if isinstance(item, slice):
-            
+        if isinstance(item, slice):  # n 是切片
+            start = item.start
+            stop = item.stop
+            if start is None:
+                start = 0
+            a, b = 1, 1
+            L = []
+            for x in range(stop):
+                if x >= start:
+                    L.append(a)
+                a, b = b, a + b
+            return L
+
+
+class Student(object):
+    def __getattr__(self, item):
+        if item == 'age':
+            return lambda: 25
+        raise AttributeError('has no attribute %s' % item)
+
+
+# 链式调用
+class Chain(object):
+    def __init__(self, path=''):
+        self._path = path
+
+    def __getattr__(self, path):
+        return Chain('%s/%s' % (self._path, path))
+
+    def __str__(self):
+        return self._path
+
+    __repr__ = __str__
+
+
+print(Chain().status.user.timeline.list)
+
+
+# 使用 __call__
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self, *args, **kwargs):
+        print('My name is %s.' % self.name)
+s = Student('Micheal')
+s()
+
+
+# 使用枚举类 Enum
+from enum import Enum
+Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+
+for name, member in Month.__members__.items():
+    # value属性则是自动赋给成员的int常量，默认从1开始计数。
+    print(name, '=>', member, ',', member.value)
+
+
+# 使用元类
+# 可以通过type()函数创建出Hello类，而无需通过class Hello(object)...的定义
+def fn(self, name='world'):
+    print('Hello, %s' % name)
+Hello = type('Hello', (object,), dict(hello=fn))
+h = Hello()
+h.hello()
+
+
+# metaclass
+# 当我们定义了类以后，就可以根据这个类创建出实例，所以：先定义类，然后创建实例。
+# 先定义metaclass，就可以创建类，最后创建实例。
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        attrs['add'] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, bases, attrs)
