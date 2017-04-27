@@ -96,7 +96,7 @@ class TextField(Field):
     def __init__(self, name=None, default=None):
         super().__init__(name, 'Text', False, default)
 
-
+# 定义 Model 的元类，所有的类都继承自type
 # 定义 ModelMetaclass读取 信息
 class ModelMetaclass(type):
     def __new__(cls, name, bases, attrs):
