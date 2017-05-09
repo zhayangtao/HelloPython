@@ -46,7 +46,7 @@ g = gen()
 next(g)
 
 [x ** 2 for x in range(5)]  # list
-(x ** 2 for x in range(5))  # generator
+g = (x ** 2 for x in range(5))  # generator
 list(x ** 2 for x in range(5))
 
 for num in (x ** 2 for x in range(4)):
@@ -62,3 +62,105 @@ list(x * 2 for x in (1, 2, 3, 4))
 import math
 
 list(map(math.sqrt, (x ** 2 for x in range(4))))
+
+print(next(g))
+
+
+def both(N):
+    yield from range(N)
+    yield from (x ** 2 for x in range(N))
+
+
+list(both(5))
+
+import os
+
+for (root, subs, files) in os.walk('.'):
+    for name in files:
+        if name.startswith('call'):
+            print(root, name)
+
+
+def scramble(seq):
+    res = []
+    for i in range(len(seq)):
+        res.append(seq[i:] + seq[:i])
+    return res
+
+
+print(scramble('spam'))
+
+print('********************')
+
+
+def scramble(seq):
+    for i in range(len(seq)):
+        yield from seq[i:] + seq[:i]
+
+
+g = scramble('spam')
+print(next(g))
+print(next(g))
+print(next(g))
+print(next(g))
+print(next(g))
+print(next(g))
+print('list', list(scramble('spam')))
+print('********************')
+
+
+def scramble(seq):
+    for i in range(len(seq)):
+        yield seq[i:] + seq[:i]
+
+
+g = scramble('spam')
+print('list', list(scramble('spam')))
+print(next(g))
+print(next(g))
+print(next(g))
+print(next(g))
+print('list', list(scramble('spam')))
+
+
+def permute1(seq):
+    if not seq:
+        return [seq]
+    else:
+        res = []
+        for i in range(len(seq)):
+            rest = seq[:i] + seq[i + 1:]
+            for x in permute1(rest):
+                res.append(seq[i:i + 1] + x)
+        return res
+
+
+def permute2(seq):
+    if not seq:
+        yield seq
+    else:
+        for i in range(len(seq)):
+            rest = seq[:i] + seq[i + 1:]
+            for x in permute2(rest):
+                yield seq[i:i + 1] + x
+
+
+print(list(scramble('abc')))
+print(permute1('abc'))
+
+
+def mymap(func, *seqs):
+    res = []
+    for args in zip(*seqs):
+        res.append(func(*args))
+    return res
+
+
+import time
+
+
+def timer(func, *args):
+    start = time.clock()
+    for i in range(1000):
+        func(*args)
+    return time.clock() - start
