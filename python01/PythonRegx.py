@@ -164,3 +164,10 @@ def timer(func, *args):
     for i in range(1000):
         func(*args)
     return time.clock() - start
+
+
+s = 'spam'
+for (offset, item) in enumerate(s):
+    print(item, 'appears at offset', offset)
+
+os.system('systeminfo')
