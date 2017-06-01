@@ -164,3 +164,4 @@ def log(func):
 int2 = functools.partial(int, base=2)
 print(int2('10000'))
 print(int2('10000', base=10))
+

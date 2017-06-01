@@ -171,3 +171,66 @@ for (offset, item) in enumerate(s):
     print(item, 'appears at offset', offset)
 
 os.system('systeminfo')
+
+
+def f(a, b, c, d):
+    print(a, b, c, d, sep='&')
+
+
+x = 'old'
+y = "x"
+
+
+def changer():
+    global x
+    x = 'new'
+
+
+def outer():
+    nonlocal y
+    x = 'old'
+
+    def changer():
+        nonlocal x
+        x = 'new'
+        y = 2
+
+
+def squares(x):
+    for i in range(x):
+        yield i ** 2
+
+
+funcs = [lambda x: x ** 2, lambda x: x ** 3]
+
+if x:
+    def func():
+        pass
+else:
+    def func():
+        pass
+
+L = {1, 2, 3}
+
+
+def test():
+    nonlocal L
+    L = x
+
+
+x = 99
+
+
+def setX(new):
+    global x
+    x = new
+
+
+def maker(M):
+    return lambda x: x ** M
+
+def makeActions():
+    acts = []
+    for i in range(5):
+        acts.append(lambda x: i **x)
+    return acts
