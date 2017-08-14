@@ -1,6 +1,4 @@
 "Assorted class utilities and tools"
-
-
 class AttrDisplay:
     def gatherAttrs(self):
         attrs = []
