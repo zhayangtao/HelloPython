@@ -11,8 +11,6 @@ class AttrDisplay:
 
 
 class TopTest(AttrDisplay):
-    ...
-
     def gatherAttrs(self):
         return 'Spam'
 
@@ -33,7 +31,6 @@ class Person(AttrDisplay):
         return '[Person: %s, %s]' % (self.name, self.pay)
 
     __repr__ = __str__
-
 
 
 class Manager(Person):
