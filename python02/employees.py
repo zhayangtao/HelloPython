@@ -1,5 +1,6 @@
 from abc import abstractmethod
 
+
 class Employee:
     def __init__(self, name, salary=0):
         self.name = name
@@ -21,7 +22,7 @@ class Chef(Employee):
         Employee.__init__(self, name, 5000)
 
     def work(self):
-        print(self.name,'make food')
+        print(self.name, 'make food')
 
 
 class Server(Employee):
@@ -38,4 +39,18 @@ class PizzaRobot(Chef):
 
     def work(self):
         print(self.name, 'makes pizza')
+
+
+if __name__ == "__main__":
+    bob = PizzaRobot('bob')
+    print(bob)
+    bob.work()
+    bob.giveRaise(.20)
+    print(bob)
+    print()
+
+    for klass in Employee, Chef, Server, PizzaRobot:
+        obj = klass(klass.__name__)
+        obj.work()
+
 
