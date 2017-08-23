@@ -7,7 +7,7 @@ class Spam:
     def printNumInstances():
         print("Number of instances created: ", Spam.numInstances)
 
-    #静态方法
+    # 静态方法
     printNumInstances = staticmethod(printNumInstances)
 
 
@@ -41,11 +41,37 @@ c.printNumInstances()
 
 class Spam1:
     numInstances = 0
+
     def __init__(self):
         Spam1.numInstances += 1
 
     def printNumInstances(cls):
         print("Number of instances:", cls.numInstances)
-    #类方法
+
+    # 类方法
     printNumInstances = classmethod(printNumInstances)
+
+
+class Spam:
+    numInstances = 0
+
+    def count(cls):
+        cls.numInstances += 1
+
+    def __init__(self):
+        self.count()
+
+    count = classmethod(count)
+
+
+class Sub(Spam):
+    numInstances = 0
+
+    def __init__(self):
+        Spam.__init__(self)
+
+
+class Other(Spam):
+    numInstances = 0
+
 
