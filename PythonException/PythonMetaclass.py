@@ -301,6 +301,7 @@ sue.giveRaise(.10)
 print(sue.pay)
 print(bob.lastName(), sue.lastName())
 
+
 # 把任何装饰器应用于方法
 # Metaclass factory:apply any decorator to all methods of a class
 
@@ -327,8 +328,46 @@ class Person(metaclass=decorateAll(tracer)):
     def lastName(self):
         return self.name.split()[-1]
 
+
 print('********************')
 print("decorateAll")
+bob = Person('Bob smith', 50000)
+sue = Person('sue Jones', 100000)
+print(bob.name, sue.name)
+sue.giveRaise(.10)
+print(sue.pay)
+print(bob.lastName(), sue.lastName())
+
+#  元类与类装饰器的关系
+# class decorator factory: apply any decorator to all methods of a class
+from types import FunctionType
+
+
+def decoratorAll(decorator):
+    def DecoDecorator(aClass):
+        for attr, attrval in aClass.__dict__.items():
+            if type(attrval) is FunctionType:
+                setattr(aClass, attr, decorator(attrval))
+        return aClass
+
+    return DecoDecorator
+
+
+@decoratorAll(tracer)
+class Person:
+    def __init__(self, name, pay):
+        self.name = name
+        self.pay = pay
+
+    def giveRaise(self, percent):
+        self.pay *= (1.0 + percent)
+
+    def lastName(self):
+        return self.name.split()[-1]
+
+
+print('********************')
+print("decoratorAll***")
 bob = Person('Bob smith', 50000)
 sue = Person('sue Jones', 100000)
 print(bob.name, sue.name)
