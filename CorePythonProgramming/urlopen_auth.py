@@ -57,3 +57,8 @@ stock = ['paper', 'envelopes', 'notepads', 'paper clips']
 
 d = dict(animal="elephant", weight=12000)
 "The {0[animal]} weighs {0[weight]}kg".format(d)
+
+import math, sys
+"math.pi = {0.pi} sys.maxunicode== {1.maxunicode}".format(math, sys)
+
+"{} {} {}".format("Python", "can", "count")
