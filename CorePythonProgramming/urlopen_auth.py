@@ -51,3 +51,9 @@ def extract_from_tag(tag, line):
 
 "The novel '{0}' was published in {1}".format("Hard Times", 1835)
 "{who} turned {age} this year".format(who="She", age=88)
+
+stock = ['paper', 'envelopes', 'notepads', 'paper clips']
+"we have {0[1]} and {0[2]} in stock".format(stock)
+
+d = dict(animal="elephant", weight=12000)
+"The {0[animal]} weighs {0[weight]}kg".format(d)
