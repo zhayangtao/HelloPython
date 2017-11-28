@@ -6,7 +6,7 @@
         {
             "label": "python",
             "type": "shell",
-            "command": "D:\\Program Files\\python36\\python.exe",//Python可执行文件路径
+            "command": "D:\\ProgramFiles\\python36\\python.exe",//Python可执行文件路径
             "args": ["${file}"]
         }
     ]
