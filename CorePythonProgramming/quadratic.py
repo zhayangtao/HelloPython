@@ -1,8 +1,6 @@
 # _*_coding:utf8_*_
-import cmath
-import math
-import sys
 import collections
+import sys
 
 
 def get_float(msg, allow_zero):
