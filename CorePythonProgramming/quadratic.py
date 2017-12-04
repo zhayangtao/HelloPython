@@ -18,9 +18,7 @@ def get_float(msg, allow_zero):
 
 Sale = collections.namedtuple("Sale", "productid customerid date quantity price")
 
-sales = []
-sales.append(Sale(432, 921, "2008-09-14", 3, 7.99))
-sales.append(Sale(419, 874, "2008-09-15", 1, 7.99))
+sales = [Sale(432, 921, "2008-09-14", 3, 7.99), Sale(419, 874, "2008-09-15", 1, 7.99)]
 
 d1 = dict({"id": 1946, "name": "washer", "size": 4})
 d2 = dict(id=1946, name="washer", size=3)
@@ -36,3 +34,7 @@ for name in names:
     key = len(name)
     d[key].append(name)
 
+m = [1, 2, 3]
+
+for key in sorted(d):
+    print(key, '=>', d[key])
