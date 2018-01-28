@@ -1,3 +1,6 @@
+from types import MethodType
+
+
 class Student(object):
     pass
 
@@ -11,19 +14,17 @@ s.name = 'Mike'
 def set_age(self, age):
     self.age = age
 
-from types import MethodType
+
 s.set_age = MethodType(set_age, s)
 s.set_age(25)
-
 
 # 给class绑定方法
 Student.set_age = set_age
 
 
 # 使用 __slots__ 限制实例能创建的属性，仅对当前类实例起作用，对继承的子类无效
-class Student1(object):
+class Student1:
     __slots__ = ('name', 'age')
-
 
 
 # 使用 @property 把方法变成属性
@@ -41,4 +42,20 @@ class Student2(object):
         self._score = value
 
 
+def teststudent2():
+    student2 = Student2()
+    student2.score = 2
+    print(student2.score)
+
+
+def testPy(a: list):
+    print(a)
+
+if __name__ == '__main__':
+    title = "meaning " 'of' " life"
+    teststudent2()
+    mantra = """
+    Always look on the bright side of life
+    """
+    testPy("1")
 
