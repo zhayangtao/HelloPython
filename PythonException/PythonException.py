@@ -1,3 +1,4 @@
+# _*_ coding: utf-8 _*_
 def fetcher(obj, index):
     return obj[index]
 
@@ -200,3 +201,24 @@ try:
     parser()
 except FormatError as exc:
     exc.logerror()
+
+
+try:
+    1 / 0
+except Exception:
+    print("exception")
+except ZeroDivisionError:
+    print("zero")
+finally:
+    print("finally")
+
+try:
+    try:
+        raise IndexError
+    finally:
+        print('spam')
+finally:
+    print('SPAM')
+
+import sys
+log = open('formaterror.txt', 'a')

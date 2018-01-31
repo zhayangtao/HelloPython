@@ -12,6 +12,7 @@ async def hello(request):
     text = '<h1>hello, %s!</h1>' % request.match_inf['name']
     return web.Response(body=text.encode('utf-8'))
 
+
 async def init(loop):
     app = web.Application(loop=loop)
     app.router.add_route('GET', '/', index)
@@ -20,6 +21,7 @@ async def init(loop):
     print('Server started at http://127.0.0.1:8000...')
     return srv
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(init(loop))
-loop.run_forever()
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(init(loop))
+    loop.run_forever()

@@ -8,7 +8,7 @@ def test():
     if len(args) == 1:
         print('Hello, world!')
     elif len(args) == 2:
-        print('Hello, $s!' % args[1])
+        print(f'Hello, $s!')
     else:
         print('Too many arguments')
 
@@ -107,3 +107,24 @@ def listing(module, verbose=True):
         else:
             print(getattr(module, attr))
         count += 1
+
+
+# 比较浮点数
+def equal_float(a, b):
+    return abs(a - b) <= sys.float_info.epsilon
+
+
+text = """abc \
+    absf
+"""
+print(text)
+
+s = ('1bv', '222')
+s = ("bbb"
+     "ssss")
+print(type(s))
+
+s = """sss \
+\sss
+"""
+print(s)
