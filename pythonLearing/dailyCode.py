@@ -19,3 +19,8 @@ sorted(L, key=str.lower, reverse=True)
 sorted([x.lower() for x in L], reverse=True)
 L.extend([1, 2, 3])
 # L.sort() not supported between instances of 'int' and 'str'
+d = {}
+d = {'spam': 2, 'eggs': 3}
+d = dict.fromkeys(['a', 'b'])
+d.items()
+
