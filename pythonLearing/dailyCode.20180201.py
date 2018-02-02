@@ -46,3 +46,7 @@ while True:
     else:
         print(int(reply) ** 2)
 print('Bye')
+
+L = [1, 2]
+L.append(2)
+print(1, 2, 3, file=(open('log.txt', 'a')))
