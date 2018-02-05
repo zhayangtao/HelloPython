@@ -5,4 +5,7 @@ print(line.split())
 d = {'food': 'Spam', 'quantity': '4', 'color': 'pink'}
 print(d['food'])
 print(list(d.keys()))
-list(d.keys()).sort()
+for key in d:
+    print(key, '=>', d[key])
+for key in sorted(d):
+    print(key, '=>', d[key])
