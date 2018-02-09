@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'article', # 填写app名称
+    'article.templatetags.custom_markdown',
 ]
 
 MIDDLEWARE = [
