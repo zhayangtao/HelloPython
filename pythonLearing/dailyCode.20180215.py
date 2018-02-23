@@ -7,7 +7,7 @@ print(x)
 
 import decimal
 
-temp = decimal.getcontext().prec = 2 
+temp = decimal.getcontext().prec = 2
 decimal.getcontext().prec = temp
 
 
@@ -21,11 +21,11 @@ import random
 random.random()
 random.choice(['life of brian', 'holy shit', 'meaning of life'])
 
-print(0.1 + 0.1 + 0.1 - 0.3) # 缺失精度
+print(0.1 + 0.1 + 0.1 - 0.3)  # 缺失精度
 
 from decimal import Decimal
 a = Decimal(0.1) + Decimal(0.1) + Decimal(0.1) - Decimal(0.3)
-print(a) # 缺失精度
+print(a)  # 缺失精度
 b = Decimal('0.1') + Decimal('0.1') + Decimal('0.1') - Decimal('0.3')
 print(b)
 
@@ -40,5 +40,3 @@ if True:
 else:
     def func():
         pass
-
-
