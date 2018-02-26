@@ -40,5 +40,3 @@ def lessthan(x, y):
 
 def grtthan(x, y):
     return x > y
-
-
