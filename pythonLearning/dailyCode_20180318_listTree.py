@@ -34,3 +34,13 @@ class ListTree:
             else:
                 result += spaces + '{0}={1}\n'.format(attr, getattr(obj, attr))
         return result
+
+
+if __name__ == '__main__':
+    from dailyCode_20180318 import Super
+
+    class Sub(Super, ListTree):
+        pass
+
+    sub = Sub()
+    print(sub)
