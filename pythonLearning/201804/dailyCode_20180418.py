@@ -111,3 +111,4 @@ def student2dict(std):
 s = Student('Bob', 20, 88)
 # print(json.dumps(s))  # TypeError: Object of type 'Student' is not JSON serializable
 print(json.dumps(s, default=student2dict))
+print(json.dumps(s, default=lambda obj: obj.__dict__))
