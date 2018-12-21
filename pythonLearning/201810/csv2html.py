@@ -54,7 +54,7 @@ def extract_fields(line):
     quote = None
     for c in line:
         if c in "\"'":
-            if quote is None: # 引号的开始
+            if quote is None:  # 引号的开始
                 quote = c
             elif quote == c:  # 引号结束
                 quote = None
