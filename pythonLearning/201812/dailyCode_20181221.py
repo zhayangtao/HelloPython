@@ -26,6 +26,7 @@ print(np.sum(y))
 # 导入 mnist
 import sys, os
 import pickle
+
 sys.path.append(os.pardir)  # 导入父目录的文件
 
 
@@ -39,3 +40,15 @@ def predict(network, x):
     W1, W2, W3 = network['W1'], network['W2'], network['W3']
     b1, b2, b3 = network['b1'], network['b2'], network['b3']
     a1 = np
+
+
+x = np.array([[0.1, 0.8, 0.1], [0.3, 0.1, 0.6], [0.2, 0.5, 0.3], [0.8, 0.1, 0.1]])
+y = np.argmax(x, axis=1)
+print(y)
+
+
+#  神经网络的学习
+def mean_squared_error(y, t):
+    return 0.5 * np.sum((y - t) ** 2)
+
+# 交叉熵误差
