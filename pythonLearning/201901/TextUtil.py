@@ -39,4 +39,12 @@ def is_balanced(text, brackets="(){}{}<>"):
 
 
 def resize(max_rows, max_columns, char=None):
-    pass
+    assert max_rows > 0 and max_columns > 0, 'too small'
+    if char is not None:
+        assert len(char) == 1
+        _background_char = char
+        _max_rows = max_rows
+        _max_columns = max_columns
+        _grid = [[_background_char for columns in range(_max_columns)] for row in range(_max_rows)]
+
+
